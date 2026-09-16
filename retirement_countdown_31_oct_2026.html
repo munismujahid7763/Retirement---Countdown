@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Retirement Countdown — 31 October 2026</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;width:100%;height:100%;background:#0b0d0c;color:#f2f0e8;font-family:Arial,Helvetica,sans-serif;overflow:hidden}
+  body{display:flex;align-items:center;justify-content:center}
+  .screen{width:100vw;height:100vh;padding:5vh 6vw;display:flex;flex-direction:column;justify-content:space-between}
+  .top{display:flex;justify-content:space-between;align-items:flex-start}
+  .eyebrow{font-size:2.1vw;letter-spacing:.24em;text-transform:uppercase;opacity:.72}
+  .name{font-size:2vw;letter-spacing:.08em;text-align:right}
+  .main{text-align:center;margin-top:-2vh}
+  .number{font-size:22vw;line-height:.82;font-weight:800;letter-spacing:-.06em}
+  .label{font-size:4vw;letter-spacing:.32em;text-transform:uppercase;margin-top:3vh}
+  .date{font-size:2.5vw;letter-spacing:.15em;margin-top:3vh;opacity:.78}
+  .timeleft{font-size:3.2vw;letter-spacing:.16em;margin-top:2.5vh;font-weight:600}
+  .bar{height:10px;width:82%;margin:5vh auto 0;border:1px solid #777;border-radius:20px;overflow:hidden}
+  .fill{height:100%;width:0%;background:#f2f0e8;transition:width .5s}
+  .bottom{display:flex;justify-content:space-between;align-items:end;font-size:1.35vw;letter-spacing:.12em;opacity:.55}
+  .live{font-size:1.2vw}
+  @media(max-aspect-ratio:1/1){.number{font-size:28vw}.label{font-size:6vw}.eyebrow,.name{font-size:3vw}.date{font-size:4vw}.bottom{font-size:2vw}}
+</style>
+</head>
+<body>
+<div class="screen">
+  <div class="top">
+    <div class="eyebrow">Final Mission</div>
+    <div class="name">LT COL SHAHID ABBASSI</div>
+  </div>
+
+  <div class="main">
+    <div id="number" class="number">45</div>
+    <div id="label" class="label">Days to Retirement</div>
+    <div class="date">31 OCTOBER 2026</div>
+    <div id="timeleft" class="timeleft">00 DAYS 00 HOURS 00 MINUTES 00 SECONDS</div>
+    <div class="bar"><div id="fill" class="fill"></div></div>
+  </div>
+
+  <div class="bottom">
+    <div id="today"></div>
+    <div class="live">COUNTDOWN RUNNING • LIVE</div>
+  </div>
+</div>
+
+<script>
+const retirement = new Date("2026-10-31T00:00:00+05:00");
+const start = new Date("2026-09-16T00:00:00+05:00");
+const total = Math.round((retirement-start)/86400000);
+
+function update(){
+  const now = new Date();
+  const remaining = retirement - now;
+  const days = Math.max(0, Math.ceil(remaining/86400000));
+  const n = document.getElementById("number");
+  const label = document.getElementById("label");
+  const totalSeconds = Math.max(0, Math.floor(remaining/1000));
+  const d = Math.floor(totalSeconds/86400);
+  const h = Math.floor((totalSeconds%86400)/3600);
+  const m = Math.floor((totalSeconds%3600)/60);
+  const sec = totalSeconds%60;
+  const pad = x => String(x).padStart(2,"0");
+
+  if(days > 0){
+    n.textContent = days;
+    label.textContent = days === 1 ? "Day to Retirement" : "Days to Retirement";
+  } else {
+    n.textContent = "✓";
+    label.textContent = "Retirement Day";
+  }
+
+  document.getElementById("timeleft").textContent =
+    `${pad(d)} DAYS  ${pad(h)} HOURS  ${pad(m)} MINUTES  ${pad(sec)} SECONDS`;
+
+  const elapsed = Math.min(total, Math.max(0, (now-start)/86400000));
+  document.getElementById("fill").style.width = (elapsed/total*100).toFixed(2)+"%";
+
+  document.getElementById("today").textContent =
+    now.toLocaleDateString("en-GB",{day:"2-digit",month:"long",year:"numeric"}) +
+    "  •  " +
+    now.toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"});
+}
+update();
+setInterval(update,1000);
+</script>
+</body>
+</html>
