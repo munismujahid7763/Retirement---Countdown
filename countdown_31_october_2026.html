@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>31 October 2026 Countdown</title>
+<style>
+html,body{margin:0;width:100%;height:100%;background:#07111d;color:#fff;font-family:Arial,sans-serif;overflow:hidden}
+body{display:flex;align-items:center;justify-content:center;text-align:center}
+.wrap{width:94%;max-width:1600px}
+.alhamdulillah{font-size:clamp(30px,4vw,64px);font-weight:800;letter-spacing:.08em;margin-bottom:22px}
+.date{font-size:clamp(25px,3vw,48px);font-weight:700;letter-spacing:.16em;margin-bottom:55px}
+.clock{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.box{border:2px solid rgba(255,255,255,.5);border-radius:18px;padding:25px 10px}
+.num{font-size:clamp(55px,9vw,150px);font-weight:800;line-height:1}
+.label{font-size:clamp(16px,2vw,30px);letter-spacing:.18em;margin-top:14px}
+@media(max-width:700px){.clock{grid-template-columns:repeat(2,1fr)}.date{margin-bottom:25px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="alhamdulillah">ALHAMDULILLAH</div>
+<div class="date">31 OCTOBER 2026</div>
+<div class="clock">
+<div class="box"><div id="d" class="num">--</div><div class="label">DAYS</div></div>
+<div class="box"><div id="h" class="num">--</div><div class="label">HOURS</div></div>
+<div class="box"><div id="m" class="num">--</div><div class="label">MINUTES</div></div>
+<div class="box"><div id="s" class="num">--</div><div class="label">SECONDS</div></div>
+</div>
+</div>
+<script>
+const target = new Date("2026-10-31T00:00:00+05:00").getTime();
+function tick(){
+ let x=Math.max(0,target-Date.now());
+ let sec=Math.floor(x/1000);
+ let d=Math.floor(sec/86400); sec%=86400;
+ let h=Math.floor(sec/3600); sec%=3600;
+ let m=Math.floor(sec/60); sec%=60;
+ document.getElementById("d").textContent=d;
+ document.getElementById("h").textContent=String(h).padStart(2,"0");
+ document.getElementById("m").textContent=String(m).padStart(2,"0");
+ document.getElementById("s").textContent=String(sec).padStart(2,"0");
+}
+tick();setInterval(tick,1000);
+</script>
+</body>
+</html>
