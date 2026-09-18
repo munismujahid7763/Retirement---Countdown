@@ -1,47 +1,13 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>31 October 2026 Countdown</title>
-<style>
-html,body{margin:0;width:100%;height:100%;background:#07111d;color:#fff;font-family:Arial,sans-serif;overflow:hidden}
-body{display:flex;align-items:center;justify-content:center;text-align:center}
-.wrap{width:94%;max-width:1600px}
-.alhamdulillah{font-size:clamp(30px,4vw,64px);font-weight:800;letter-spacing:.08em;margin-bottom:22px}
-.date{font-size:clamp(25px,3vw,48px);font-weight:700;letter-spacing:.16em;margin-bottom:55px}
-.clock{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.box{border:2px solid rgba(255,255,255,.5);border-radius:18px;padding:25px 10px}
-.num{font-size:clamp(55px,9vw,150px);font-weight:800;line-height:1}
-.label{font-size:clamp(16px,2vw,30px);letter-spacing:.18em;margin-top:14px}
-@media(max-width:700px){.clock{grid-template-columns:repeat(2,1fr)}.date{margin-bottom:25px}}
-</style>
-</head>
-<body>
-<div class="wrap">
-<div class="alhamdulillah">ALHAMDULILLAH</div>
-<div class="date">31 OCTOBER 2026</div>
-<div class="clock">
-<div class="box"><div id="d" class="num">--</div><div class="label">DAYS</div></div>
-<div class="box"><div id="h" class="num">--</div><div class="label">HOURS</div></div>
-<div class="box"><div id="m" class="num">--</div><div class="label">MINUTES</div></div>
-<div class="box"><div id="s" class="num">--</div><div class="label">SECONDS</div></div>
-</div>
-</div>
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Alhamdulillah Countdown</title><style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}body{background:linear-gradient(135deg,#06101d,#081a31 55%,#06101d);color:#fff;font-family:Arial,Helvetica,sans-serif;display:flex;align-items:center;justify-content:center}.page{width:96vw;height:94vh;display:grid;grid-template-rows:auto 1fr auto;gap:22px}.top{display:grid;grid-template-columns:1fr 1.05fr 1fr;align-items:start;gap:28px}.center{text-align:center;padding-top:42px}.title{font-size:clamp(34px,4vw,68px);font-weight:800;letter-spacing:.08em;white-space:nowrap}.date{font-size:clamp(20px,2.1vw,38px);font-weight:700;letter-spacing:.18em;margin-top:22px;white-space:nowrap}.cal{border:1.5px solid rgba(255,255,255,.34);border-radius:22px;padding:20px 20px 16px;background:rgba(5,20,38,.48);min-height:270px}.cal h2{text-align:center;font-size:clamp(20px,2vw,34px);margin:0 0 16px}.week,.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;text-align:center}.week{font-size:clamp(11px,1.05vw,19px);opacity:.85;margin-bottom:8px}.day{position:relative;font-size:clamp(14px,1.25vw,24px);height:34px;display:flex;align-items:center;justify-content:center}.day.passed:after{content:"";position:absolute;left:18%;right:18%;top:50%;height:3px;background:#ff3347;transform:rotate(-28deg);border-radius:3px}.note{text-align:center;margin-top:12px;font-size:clamp(11px,1vw,18px);opacity:.75}.clock{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}.box{border:1.5px solid rgba(255,255,255,.38);border-radius:20px;padding:35px 10px 27px;text-align:center;background:rgba(4,18,34,.36)}.num{font-size:clamp(65px,8.5vw,145px);font-weight:800;line-height:.9}.label{font-size:clamp(15px,1.5vw,28px);letter-spacing:.22em;margin-top:22px}.footer{display:flex;justify-content:space-between;font-size:clamp(13px,1.2vw,22px);opacity:.62}@media(max-width:900px){.page{height:96vh;gap:10px}.top{grid-template-columns:1fr 1fr}.center{grid-column:1/-1;grid-row:1;padding-top:0}.cal{grid-row:2}.clock{gap:8px}}
+</style></head><body><div class="page"><div class="top">
+<section class="cal"><h2>September 2026</h2><div class="week"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div><div id="sep" class="grid"></div><div id="sepnote" class="note"></div></section>
+<section class="center"><div class="title">ALHAMDULILLAH</div><div class="date">31 OCTOBER 2026</div></section>
+<section class="cal"><h2>October 2026</h2><div class="week"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div><div id="oct" class="grid"></div><div class="note">Days will be marked as they pass</div></section>
+</div><div class="clock"><div class="box"><div id="d" class="num">0</div><div class="label">DAYS</div></div><div class="box"><div id="h" class="num">00</div><div class="label">HOURS</div></div><div class="box"><div id="m" class="num">00</div><div class="label">MINUTES</div></div><div class="box"><div id="s" class="num">00</div><div class="label">SECONDS</div></div></div><div class="footer"><span></span><span>ONE DAY CLOSER ...</span></div></div>
 <script>
-const target = new Date("2026-10-31T00:00:00+05:00").getTime();
-function tick(){
- let x=Math.max(0,target-Date.now());
- let sec=Math.floor(x/1000);
- let d=Math.floor(sec/86400); sec%=86400;
- let h=Math.floor(sec/3600); sec%=3600;
- let m=Math.floor(sec/60); sec%=60;
- document.getElementById("d").textContent=d;
- document.getElementById("h").textContent=String(h).padStart(2,"0");
- document.getElementById("m").textContent=String(m).padStart(2,"0");
- document.getElementById("s").textContent=String(sec).padStart(2,"0");
-}
-tick();setInterval(tick,1000);
-</script>
-</body>
-</html>
+const target=new Date("2026-10-31T00:00:00+05:00").getTime();
+function cal(id,y,mo,passed){let g=document.getElementById(id);g.innerHTML="";let first=new Date(y,mo,1).getDay(),n=new Date(y,mo+1,0).getDate();for(let i=0;i<first;i++)g.appendChild(document.createElement("span"));for(let d=1;d<=n;d++){let e=document.createElement("div");e.className="day";e.textContent=d;if(d<=passed)e.classList.add("passed");g.appendChild(e)}}
+function calendars(){let now=new Date(),sp=0,op=0;if(now.getFullYear()>2026||(now.getFullYear()==2026&&now.getMonth()>8))sp=30;else if(now.getFullYear()==2026&&now.getMonth()==8)sp=now.getDate();if(now.getFullYear()>2026||(now.getFullYear()==2026&&now.getMonth()>9))op=31;else if(now.getFullYear()==2026&&now.getMonth()==9)op=now.getDate();cal("sep",2026,8,sp);cal("oct",2026,9,op);document.getElementById("sepnote").textContent=sp+" days passed"}
+function tick(){let x=Math.max(0,target-Date.now()),q=Math.floor(x/1000),d=Math.floor(q/86400);q%=86400;let h=Math.floor(q/3600);q%=3600;let m=Math.floor(q/60),s=q%60;document.getElementById("d").textContent=d;document.getElementById("h").textContent=String(h).padStart(2,"0");document.getElementById("m").textContent=String(m).padStart(2,"0");document.getElementById("s").textContent=String(s).padStart(2,"0")}calendars();tick();setInterval(tick,1000);setInterval(calendars,60000);
+</script></body></html>
